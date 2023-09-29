@@ -28,7 +28,7 @@
               targets.wasm32-unknown-unknown.latest.rust-std
             ];
     in {
-      devShell = pkgs.mkShell {
+      devShells.default = pkgs.mkShell {
         buildInputs = with pkgs; [
           trunk
           toolchain
