@@ -514,7 +514,7 @@ async function __wbg_init(input) {
     if (wasm !== undefined) return wasm;
 
     if (typeof input === 'undefined') {
-        input = new URL('nyanbinary-rs-735725d0d9b266b5_bg.wasm', import.meta.url);
+        input = new URL('nyanbinary-rs-968513d7deb76969_bg.wasm', import.meta.url);
     }
     const imports = __wbg_get_imports();
 
