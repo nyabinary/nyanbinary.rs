@@ -1,6 +1,6 @@
 use leptos::*;
 
-// A component is just a function with #[component] above it
+// A component is just a function with #[component] above it.
 #[component]
 fn Poggers() -> impl IntoView {
     let (poggers, set_poggers) = create_signal(0);
