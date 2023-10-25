@@ -1,0 +1,61 @@
+<!DOCTYPE html><html><head>
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet">
+
+    <style>
+    body {
+      margin: 25px auto;
+      max-width: 800px;
+    }
+
+    button {
+      padding: 25px !important;
+    }
+
+    #buttons {
+      margin-top: 10px;
+      display: grid;
+      grid-gap: 10px;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .spacing {
+      margin: 25px 0;
+    }
+
+      html, body, pre, code, kbd, samp {
+          font-family: "Press Start 2P";
+      }
+    </style>
+  
+<link rel="preload" href="/nyanbinary-rs-7117f0c796eca7f1_bg.wasm" as="fetch" type="application/wasm" crossorigin="">
+<link rel="modulepreload" href="/nyanbinary-rs-7117f0c796eca7f1.js"></head>
+  <body>
+<script type="module">import init from '/nyanbinary-rs-7117f0c796eca7f1.js';init('/nyanbinary-rs-7117f0c796eca7f1_bg.wasm');</script><script>(function () {
+    var protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+    var url = protocol + '//' + window.location.host + '/_trunk/ws';
+    var poll_interval = 5000;
+    var reload_upon_connect = () => {
+        window.setTimeout(
+            () => {
+                // when we successfully reconnect, we'll force a
+                // reload (since we presumably lost connection to
+                // trunk due to it being killed, so it will have
+                // rebuilt on restart)
+                var ws = new WebSocket(url);
+                ws.onopen = () => window.location.reload();
+                ws.onclose = reload_upon_connect;
+            },
+            poll_interval);
+    };
+
+    var ws = new WebSocket(url);
+    ws.onmessage = (ev) => {
+        const msg = JSON.parse(ev.data);
+        if (msg.reload) {
+            window.location.reload();
+        }
+    };
+    ws.onclose = reload_upon_connect;
+})()
+</script></body></html>

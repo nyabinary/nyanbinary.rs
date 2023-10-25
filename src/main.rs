@@ -1,23 +1,16 @@
-use leptos::*;
+// To make swords a module, do following:
+// mod swords;
+// use swords::{something_from_swords};
 
-// A component is just a function with #[component] above it.
-#[component]
-fn Poggers() -> impl IntoView {
-    let (poggers, set_poggers) = create_signal(0);
+// lib.rs is automatically an module with name <project>
+// mod lib as nyanbinary_rs;
 
-    view! {
-      <section class="nes-container with-title">
-        <h3 class="title">"Poggers counter: "{poggers}</h3>
-        <div class="item" id="buttons">
-          <button class="nes-btn is-error" on:click=move |_| { set_poggers.update(|n| *n -= 1); }>"Unpoggers"</button>
-          <button class="nes-btn is-success" on:click=move |_| { set_poggers.update(|n| *n += 1); }>"Poggers"</button>
-        </div>
-      </section>
-    }
-}   
+use nyanbinary_rs::prelude::*;
 
 fn main() {
     mount_to_body(|| view! {
         <Poggers />
+        // <Swords />
+        <Docs />
     })
 }

@@ -21,17 +21,22 @@
   }:
     flake-utils.lib.eachDefaultSystem (system: let
       pkgs = import nixpkgs {inherit system;};
-      toolchain = with fenix.packages.${system};
-            combine [
-              minimal.rustc
-              minimal.cargo
-              targets.wasm32-unknown-unknown.latest.rust-std
-            ];
     in {
-      devShells.default = pkgs.mkShell {
+      formatter = pkgs.alejandra;
+      devShell = pkgs.mkShell {
         buildInputs = with pkgs; [
           trunk
-          toolchain
+          (with fenix.packages.${system};
+            combine [
+              complete.rustc
+              complete.cargo
+              complete.rustfmt
+              complete.rust-analyzer
+              complete.clippy
+              complete.miri
+              complete.rust-src
+              targets.wasm32-unknown-unknown.latest.rust-std
+            ])
         ];
       };
     });
